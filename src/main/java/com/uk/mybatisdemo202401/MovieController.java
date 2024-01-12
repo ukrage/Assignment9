@@ -1,5 +1,6 @@
 package com.uk.mybatisdemo202401;
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +18,18 @@ public class MovieController {
         return movieService.findAll();
     }
 
+    @GetMapping("/movie-id/{id}")
+    public Movie findById(@PathVariable("id") int id) {
+        return movieService.findById(id);
+    }
+
     @PostMapping("/nameList")
-    public List<Movie> findByNames(@RequestParam String movieName) {
-        return movieMapper.findByNameContains(movieName);
+    public List<Movie> findByName(@RequestParam String movieName) {
+        return movieService.findByName(movieName);
     }
 
     @PostMapping("/directorList")
     public List<Movie> findByDirector(@RequestParam String director) {
-        return movieMapper.findByDirectorContains(director);
+        return movieService.findByDirector(director);
     }
 }
