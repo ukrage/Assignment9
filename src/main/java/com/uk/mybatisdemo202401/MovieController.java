@@ -12,7 +12,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movies")
+    @GetMapping("/allMovieList")
     public List<Movie> findAll() {
         return movieService.findAll();
     }
@@ -23,12 +23,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public List<Movie> findByName(@RequestParam String movieName) {
-        return movieService.findByName(movieName);
-    }
-
-    @GetMapping("/movies")
-    public List<Movie> findByDirector(@RequestParam String director) {
-        return movieService.findByDirector(director);
+    public List<Movie> findByName(@RequestParam String movieName, @RequestParam String directorName) {
+        return movieService.findBy(movieName, directorName);
     }
 }
