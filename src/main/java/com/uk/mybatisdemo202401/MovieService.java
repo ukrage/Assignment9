@@ -27,11 +27,10 @@ public class MovieService {
     }
 
     public List<Movie> findBy(String movieName, String directorName) {
-        List<Movie> movies = movieMapper.findByContains(movieName, directorName);
-        if (!movies.isEmpty()) {
-            return movies;
+        if (movieName.isEmpty() && directorName.isEmpty()) {
+            return movieMapper.findAll();
         } else {
-            throw new MovieNotFoundException("Movie not found by director");
+            return movieMapper.findBy(movieName, directorName);
         }
     }
 }

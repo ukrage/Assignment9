@@ -16,5 +16,5 @@ public interface MovieMapper {
 
     @Select({"SELECT * FROM movies WHERE name LIKE CONCAT('%', #{movieName}, '%')",
             "AND director LIKE CONCAT('%', #{directorName}, '%')"})
-    List<Movie> findByContains(String movieName, String directorName);
+    List<Movie> findBy(String movieName, String directorName);
 }
