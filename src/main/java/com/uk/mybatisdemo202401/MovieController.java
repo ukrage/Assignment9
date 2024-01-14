@@ -12,11 +12,6 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/allMovieList")
-    public List<Movie> findAll() {
-        return movieService.findAll();
-    }
-
     @GetMapping("/movies/{id}")
     public Movie findById(@PathVariable("id") int id) {
         return movieService.findById(id);

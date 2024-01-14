@@ -13,10 +13,6 @@ public class MovieService {
         this.movieMapper = movieMapper;
     }
 
-    public List<Movie> findAll() {
-        return movieMapper.findAll();
-    }
-
     public Movie findById(int id) {
         Optional<Movie> movie = movieMapper.findById(id);
         if (movie.isPresent()) {
