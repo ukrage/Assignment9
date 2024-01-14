@@ -12,18 +12,13 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    @GetMapping("/movies/{id}")
+    public Movie findById(@PathVariable("id") int id) {
+        return movieService.findById(id);
+    }
+
     @GetMapping("/movies")
-    public List<Movie> findAll() {
-        return movieService.findAll();
-    }
-
-    @PostMapping("/nameList")
-    public List<Movie> findByNames(@RequestParam String movieName) {
-        return movieMapper.findByNameContains(movieName);
-    }
-
-    @PostMapping("/directorList")
-    public List<Movie> findByDirector(@RequestParam String director) {
-        return movieMapper.findByDirectorContains(director);
+    public List<Movie> findByName(@RequestParam String movieName, @RequestParam String directorName) {
+        return movieService.findBy(movieName, directorName);
     }
 }

@@ -3,6 +3,7 @@ package com.uk.mybatisdemo202401;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -12,7 +13,20 @@ public class MovieService {
         this.movieMapper = movieMapper;
     }
 
-    public List<Movie> findAll() {
-        return movieMapper.findAll();
+    public Movie findById(int id) {
+        Optional<Movie> movie = movieMapper.findById(id);
+        if (movie.isPresent()) {
+            return movie.get();
+        } else {
+            throw new MovieNotFoundException("Movie not found");
+        }
+    }
+
+    public List<Movie> findBy(String movieName, String directorName) {
+        if (movieName.isEmpty() && directorName.isEmpty()) {
+            return movieMapper.findAll();
+        } else {
+            return movieMapper.findBy(movieName, directorName);
+        }
     }
 }
